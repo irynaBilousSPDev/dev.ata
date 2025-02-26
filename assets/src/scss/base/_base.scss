@@ -1,0 +1,195 @@
+@use "../abstracts/variables"  as vars;
+@use "../abstracts/mixins" as mixins;
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: vars.$font-size-root; // 62.5% = 10px base
+}
+
+body {
+  font-size: vars.$font-size-default; // 62.5% = 10px base
+  font-family: "Lato", serif;
+  color: vars.$black;
+  background-color: vars.$white;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+*, *:hover, *:focus {
+  outline: 0;
+}
+
+section {
+  overflow: hidden;
+}
+
+.image_bg {
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.left_space {
+  @include mixins.mac-screen {
+    @include mixins.left-space(7vw);
+  }
+}
+
+header .left_space {
+  @include mixins.mac-screen {
+    padding-right: 7vw;
+  }
+}
+
+
+h1 {
+  @include mixins.heading-style(vars.$font-size-display-sm, 1.4, vars.$weight-bold, vars.$black);
+
+  @include mixins.lg-screen {
+
+    @include mixins.heading-style(vars.$font-size-title, 8.4rem, vars.$weight-bold, vars.$black);
+  }
+}
+
+h2 {
+  @include mixins.heading-style(vars.$font-size-m, 1.2, vars.$weight-regular, vars.$black);
+
+  @include mixins.lg-screen {
+
+    @include mixins.heading-style(vars.$font-size-lg, 2rem, vars.$weight-regular, vars.$black);
+  }
+}
+
+.transition, %transition {
+  transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 1281px) {
+  .container {
+    max-width: 1240px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1640px;
+  }
+  .small_container {
+    max-width: 1280px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    padding: 0;
+  }
+}
+
+.image_bg {
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+section {
+  position: relative;
+}
+
+.site-content {
+  margin-top: 122px;
+}
+
+.title_section {
+  @include mixins.heading-style(vars.$font-size-title, 1.2, vars.$weight-bold, vars.$black);
+}
+
+.banner_title {
+  @include mixins.heading-style(80px, 1.1, vars.$weight-bold, vars.$white);
+}
+
+.sub_title,
+.sub_title_section {
+  @include mixins.heading-style(vars.$font-size-xxl, 1.2, vars.$weight-bold, vars.$black);
+}
+
+.title {
+  @include mixins.heading-style(vars.$font-size-display-sm, 1.2, vars.$weight-bold, vars.$black);
+}
+
+.description,
+.small_title {
+  @include mixins.heading-style(vars.$font-size-lg, 1.2, vars.$weight-bold, vars.$black);
+}
+
+.primary_color {
+  color: vars.$primary;
+}
+
+.copy_account_number {
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(vars.$primary, 0.85);
+    text-decoration: underline;
+  }
+}
+
+.copy-tooltip {
+  margin: 0 1rem;
+  color: vars.$white;
+}
+
+// Skip link styling
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0073aa;
+  color: vars.$white;
+  padding: 10px 15px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out;
+
+  &:focus {
+    top: 10px; // Make it visible when focused
+    outline: 2px solid vars.$white;
+  }
+}
+
+// Main content wrapper
+#primary {
+  margin-top: 20px;
+}
+
+
+main {
+  min-height: 100vh;
+}

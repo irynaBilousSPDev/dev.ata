@@ -1,0 +1,131 @@
+@use "../abstracts/variables"  as vars;
+@use "../abstracts/mixins" as mixins;
+
+.slider_for_images {
+  position: relative;
+  max-height: 78vh;
+  overflow: hidden;
+
+  .image_bg {
+    height: 78vh;
+    width: 100%;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 75px;
+    height: 100%;
+    background-color: rgba(134, 134, 134, 0.27);
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+
+    @include mixins.flexbox(row, center, center);
+
+    &:hover {
+      background-color: rgba(134, 134, 134, 0.5);
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 32px;
+      border: solid white;
+      border-width: 0 4px 4px 0;
+    }
+  }
+
+  .slick-prev {
+    left: 0;
+
+    &::before {
+      transform: rotate(135deg); // Left arrow
+    }
+  }
+
+  .slick-next {
+    right: 0;
+
+    &::before {
+      transform: rotate(-45deg); // Right arrow
+    }
+  }
+}
+
+
+.slider_nav_content {
+  height: 70%;
+
+  @include mixins.flexbox(row,center, center);
+}
+
+.slider_content_container {
+  max-width: 580px;
+  padding: 20px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 30px;
+    font-weight: bold
+  }
+}
+
+.controls_wrapper {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  position: relative;
+
+  @include mixins.flexbox(row-reverse, flex-start, center);
+
+  .slick-dots {
+    width: calc(100% - 2rem);
+    position: relative;
+    bottom: -5px;
+    left: 2rem;
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    gap: 8px;
+
+    li {
+      width: 69px;
+      height: 12px;
+      background-color: #F5682C;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &.slick-active {
+        width: 143px;
+        opacity: 1;
+      }
+    }
+
+    button {
+      display: none;
+    }
+  }
+
+  .slick-play-pause {
+    background: transparent;
+    color: #F5682C;
+    border: 1px solid #F5682C;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    transform: translateX(-50%);
+    z-index: 10;
+    border-radius: 50%;
+    @include mixins.flexbox(column, flex-start, center);
+  }
+
+  button:focus {
+    outline: 3px auto #F5682C;
+  }
+}

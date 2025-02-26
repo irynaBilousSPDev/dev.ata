@@ -1,0 +1,27 @@
+@use "../../abstracts/variables"  as vars;
+@use "../../abstracts/mixins" as mixins;
+
+.section_tuition_fees {
+  .payments_item {
+    font-weight: vars.$weight-bold;
+
+    span {
+      display: block;
+      width: 90px;
+      height: 41px;
+      background-color: vars.$background-gray;
+      @include mixins.flexbox(row, center, center);
+    }
+  }
+}
+
+.price_table {
+  .description {
+    line-height: 1.3;
+    color: rgba(vars.$border-gray, 0.8);
+
+    strong {
+      font-weight: vars.$weight-extra-bold;
+    }
+  }
+}

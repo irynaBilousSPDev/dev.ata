@@ -1,0 +1,53 @@
+@use "../abstracts/variables"  as vars;
+@use "../abstracts/mixins" as mixins;
+
+.site-header {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: vars.$white;
+  padding-bottom: 1rem;
+
+  .header_top_lang_nav {
+    width: 100%;
+    background-color: vars.$black;
+
+    ul.lan_nav {
+      @include mixins.flexbox(row, flex-end, center);
+      list-style: none;
+
+      li {
+        a {
+          display: block;
+          padding: 1rem 0.5rem;
+          color: vars.$white;
+          @include mixins.font-style(vars.$font-size-base, 17px, vars.$weight-regular);
+        }
+
+        &.active a {
+          background-color: vars.$white;
+          color: vars.$black;
+        }
+      }
+    }
+  }
+
+  .site_navigation_wrapper {
+    @include mixins.flexbox(row, space-between, center);
+    padding: 1.5rem 0;
+  }
+
+  #menu-main {
+    list-style: none;
+    @include mixins.flexbox(row);
+
+    li a {
+      @include mixins.font-style(vars.$font-size-lg, 24px, vars.$weight-regular);
+      padding: 12px;
+
+    }
+  }
+
+}
+

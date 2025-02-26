@@ -1,0 +1,83 @@
+@use "../../abstracts/variables"  as vars;
+@use "../../abstracts/mixins" as mixins;
+
+
+.section_study_program {
+  .button-orange {
+    max-width: 330px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding: 6px 15px;
+    font-size: vars.$font-size-lg;
+    line-height: 1.1;
+  }
+}
+
+.program_percentages {
+  .sub_title {
+    text-transform: uppercase;
+  }
+
+  .number {
+    @include mixins.font-style(vars.$font-size-display-xl, 1.2, vars.$weight-bold);
+  }
+}
+
+.program_info {
+  .image_bg {
+    height: 84vh;
+    width: 100%;
+
+    @include mixins.flexbox(row, flex-start, center);
+  }
+}
+
+.program_info_details {
+  width: 100%;
+  max-width: 60%;
+  flex-wrap: wrap;
+
+  @include mixins.flexbox(row, flex-start, center);
+
+  @include mixins.xl-screen {
+    max-width: 50%;
+  }
+
+  @include mixins.mac-screen {
+    margin-top: -10rem;
+  }
+
+  .item {
+    width: 100%;
+    max-width: 400px;
+    height: 120px;
+    padding: 1.5rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+    background-color: vars.$white;
+
+    @include mixins.flexbox(column, flex-start, center);
+    @include mixins.box-shadow(0, 3, 6, #00000029);
+
+    @include mixins.ipad-air-screen {
+      width: calc(50% - 16px);
+    }
+
+    @include mixins.xl-screen {
+      max-width: 50%;
+    }
+
+    .small_title {
+      margin-bottom: 1.5rem;
+      max-width: 190px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h4.small_title {
+      font-weight: vars.$weight-extra-bold;
+    }
+  }
+}
+
+

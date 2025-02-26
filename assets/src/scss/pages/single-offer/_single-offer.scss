@@ -1,0 +1,91 @@
+@use "../../abstracts/variables"  as vars;
+@use "../../abstracts/mixins" as mixins;
+
+
+.section_header {
+  .image_bg {
+    height: 260px;
+    width: calc(100% + 15px);
+
+    @include mixins.ipad-mini-screen {
+      height: 50vh;
+    }
+    @include mixins.ipad-screen {
+      height: 60vh;
+    }
+    @include mixins.xl-screen {
+      height: 91vh;
+    }
+  }
+}
+
+
+.section_header.left_space {
+  @include mixins.ipad-air-screen {
+    @include mixins.left-space(3vw);
+  }
+  @include mixins.ipad-pro-screen {
+    @include mixins.left-space(5vw);
+  }
+  @include mixins.mac-screen {
+    @include mixins.left-space(7vw);
+  }
+}
+
+.offer_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.offer_header {
+
+  .top_details {
+    padding: 0 15px;
+    margin-top: 1rem;
+  }
+
+  .taxonomy_info {
+    margin-right: 2rem;
+  }
+}
+
+.offer_details_wrapper {
+  max-width: 520px;
+
+  .taxonomy_info:nth-child(odd) {
+    .row {
+      background-color: vars.$background-gray;
+    }
+  }
+
+  .item {
+    padding: 1rem;
+
+    &:hover {
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .item:nth-child(even) {
+    font-weight: vars.$weight-bold;
+    font-size: vars.$font-size-lg;
+  }
+}
+
+.offer_partners {
+  img {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+
+  h2 {
+    @include mixins.heading-style(vars.$font-size-default, 1.2, vars.$weight-regular, vars.$black);
+    margin-bottom: 1rem;
+  }
+}
+
+

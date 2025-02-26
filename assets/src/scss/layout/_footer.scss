@@ -1,0 +1,44 @@
+@use "../abstracts/variables"  as vars;
+@use "../abstracts/mixins" as mixins;
+
+footer {
+  position: relative;
+  z-index: 11;
+  background-color: vars.$black;
+  color: vars.$white;
+}
+
+.footer_body {
+  padding: 4rem 0;
+
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .item:last-child {
+    align-items: flex-end;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+
+  }
+
+  a {
+    color: vars.$white;
+    display: block;
+    margin-right: 1rem;
+  }
+}
+
+.footer_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(vars.$white, 0.25);
+  padding: 1rem 0;
+}

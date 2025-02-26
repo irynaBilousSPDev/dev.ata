@@ -1,0 +1,350 @@
+@use "../abstracts/variables"  as vars;
+@use "../abstracts/mixins" as mixins;
+
+.page-template-page-offer {
+  background-color: vars.$background-gray;
+}
+
+.page_offer {
+  background-color: vars.$background-gray;
+  min-height: 100vh;
+
+  h1 {
+    padding-top: 24px;
+    margin-bottom: 2rem;
+  }
+}
+
+.offer_wrapper {
+  overflow: hidden;
+
+  #sidebar {
+    width: 25%;
+    position: fixed;
+    left: 0;
+  }
+}
+
+.offer_content {
+  position: relative;
+  width: 100%;
+  padding: 0 2rem;
+  margin-left: auto;
+  margin-right: 0;
+
+  @include mixins.ipad-air-screen {
+    width: calc(100% - 320px);
+    padding-right: 2rem;
+    padding-left: 2.6rem;
+  }
+
+  @include mixins.xxl-screen {
+    width: calc(100% - 450px);
+    padding-right: 130px;
+  }
+
+}
+
+.filter_col {
+  position: relative;
+  padding: 0;
+}
+
+#sidebar {
+  position: relative;
+  display: none;
+
+  @include mixins.ipad-air-screen {
+    display: block;
+  }
+}
+
+.filter_side {
+  background-color: vars.$white;
+  height: calc(100vh - 122px);
+  padding: 4rem 2rem;
+  overflow-y: scroll;
+  position: fixed;
+  top: 122px;
+  left: 0;
+  width: 100%;
+  max-width: 320px;
+  transition: all .01s ease-in-out;
+
+
+  @include mixins.xxl-screen {
+    left: 130px;
+  }
+
+  &.fixed {
+    //padding: 5rem 2rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    overflow-x: auto;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #E1E1E1;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    overflow-x: auto;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #AFAEAE;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    overflow-x: auto;
+  }
+
+  .taxonomy_group {
+    .arrow-open-close {
+      position: relative;
+      width: vars.$font-size-m;
+      height: 9px;
+      cursor: pointer;
+
+      &:before, &:after {
+        transition: 0.15s all ease-in-out;
+        position: absolute;
+        content: '';
+        width: 55%;
+        height: 2px;
+        background: vars.$black;
+        top: 49%;
+      }
+
+      &:before {
+        transform: rotate(-150deg);
+        left: 0;
+      }
+
+      &:after {
+        transform: rotate(150deg);
+        right: 0;
+      }
+    }
+
+    .filter_accordion_header {
+      cursor: pointer;
+      width: 100%;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      transition: background-color 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-weight: vars.$weight-bold;
+
+      .arrow-open-close {
+        float: right;
+        margin: 6px 10px 0 0;
+      }
+
+      &.active {
+        .arrow-open-close {
+          &:before {
+            transform: rotate(-210deg);
+            left: 0;
+          }
+
+          &:after {
+            transform: rotate(210deg);
+            right: 0;
+          }
+        }
+      }
+    }
+
+    .accordion-content {
+      display: none;
+      border-top: none;
+
+      .labels_list {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          @include mixins.font-style(vars.$font-size-default, 24px, vars.$weight-semi-regular);
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          input[type="checkbox"] {
+            appearance: none; // Remove default checkbox styling
+            -webkit-appearance: none;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 2px solid vars.$black;
+            border-radius: 4px; // Rounded corners
+            background-color: vars.$white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:checked {
+              background-color: vars.$white;
+              border-color: vars.$black;
+
+              &::before {
+                content: "";
+                position: absolute;
+                top: 1px;
+                left: 5px;
+                width: 7px;
+                height: 12px;
+                border: solid vars.$black;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+            }
+
+            &:focus {
+              outline: none;
+              //box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.5);
+            }
+
+            &:hover {
+              border-color: vars.$primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//tags_container
+.tags_container {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.filter_tags_wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  .button_clear_filters,
+  h3 {
+    margin-right: 10px;
+    @include mixins.font-style(vars.$font-size-m, 22px, vars.$weight-bold);
+  }
+}
+
+
+.selected_tags_container {
+  flex-wrap: wrap;
+  display: flex;
+
+  .filter-tag {
+    cursor: pointer;
+    padding: 4px 10px;
+    border: 1px solid #707070;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 5px 2px;
+    background-color: vars.$white;
+    @include mixins.font-style(vars.$font-size-base, 24px, vars.$weight-regular);
+  }
+}
+
+.button_clear_filters {
+  border: none;
+  background-color: transparent;
+  color: vars.$black;
+  display: inline-block;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+//card_post_item
+.card_post_item {
+  margin-bottom: 38px;
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 1rem;
+
+  @include mixins.ipad-mini-screen {
+    width: 50%;
+  }
+
+  @include mixins.ipad-air-screen {
+    width: 100%;
+  }
+
+  @include mixins.ipad-screen {
+    width: 50%;
+  }
+
+  @include mixins.lg-screen {
+    width: 33.33333333%;
+  }
+
+  @include mixins.big-screen {
+    width: 25%;
+  }
+}
+
+.card_post_wrapper {
+  padding: 18px;
+  width: 100%;
+  height: 100%;
+  background-color: vars.$white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card_post_image {
+  border-bottom: 2px solid vars.$primary;
+  min-height: 256px;
+  background-color: vars.$background-gray;
+
+  .image_bg {
+    height: 256px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.card_post_body {
+  padding: 18px;
+
+  h2 {
+    @include mixins.font-style(vars.$font-size-xl, 29px, vars.$weight-bold);
+
+  }
+}
+
+.card_properties_wrapper {
+  margin: 1rem 0;
+}
+
+.card_property {
+  margin-bottom: 1rem;
+
+  .sub_title {
+    font-size: vars.$font-size-default;
+    line-height: 24px;
+  }
+
+  h3 {
+    @include mixins.font-style(vars.$font-size-default, 19px, vars.$weight-bold);
+  }
+}
+
+.buttons_wrapper {
+  @include mixins.flexbox(row, space-between, center);
+
+  a {
+    margin-right: 1rem;
+  }
+}
+
+
